@@ -12,8 +12,17 @@ namespace RPGProject
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
+            foreach(string arg in args)
+            {
+                switch (arg)
+                {
+                    case "-v":
+                        Console.WriteLine("Version Number 0.1");
+                        break;
+                }
+            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

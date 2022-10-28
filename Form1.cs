@@ -32,7 +32,10 @@ namespace RPGProject
         private void ContinueBtn_Click(object sender, EventArgs e)
         {
             player = SaveManagement.LoadPLayer();
-            TestLb.Text = "Name: " + player.name;
+            if (player.name != null)
+            {
+                TestLb.Text = "Name: " + player.name;
+            }
         }
     }
 }
