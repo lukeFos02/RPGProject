@@ -37,6 +37,9 @@ namespace RPGProject
                         SaveManagement.SavePlayer(player);
                         MessageBox.Show(player.name + " Now Has Cheats!");
                         break;
+                        default:
+                        MessageBox.Show("Wrong Command /n -v For Version /n dev For Developer Equipment");
+                        break;
                 }
             }
             else
