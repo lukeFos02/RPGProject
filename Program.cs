@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGProject.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,20 +13,38 @@ namespace RPGProject
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main(string[] args)
+        static void Main()
         {
-            foreach(string arg in args)
+            string[] args = Environment.GetCommandLineArgs();
+            if (args.Length > 1)
             {
-                switch (arg)
+                switch (args[1])
                 {
                     case "-v":
-                        Console.WriteLine("Version Number 0.1");
+                        MessageBox.Show("Version Number 0.1");
+                        break;
+                    case "dev":
+                        //edits current save linked to the game
+                        //if no save is detected it should give the dev the default player
+                        //normal players wont be able to enter the game with default player
+                        Player player = SaveManagement.LoadPLayer();
+                        Weapon DevWep = Weapon.LoadDeveloperSword();
+                        Armour DevAr = Armour.LoadDeveloperArmour();
+                        player.currentWeapon = DevWep;
+                        player.currentArmour = DevAr;
+                        player.weapons.Add(DevWep); 
+                        player.armours.Add(DevAr);
+                        SaveManagement.SavePlayer(player);
+                        MessageBox.Show(player.name + " Now Has Cheats!");
                         break;
                 }
             }
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            else
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new Form1());
+            }
         }
     }
 }

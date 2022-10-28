@@ -35,9 +35,10 @@
             // 
             // NewGameBtn
             // 
-            this.NewGameBtn.Location = new System.Drawing.Point(531, 203);
+            this.NewGameBtn.Location = new System.Drawing.Point(708, 250);
+            this.NewGameBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NewGameBtn.Name = "NewGameBtn";
-            this.NewGameBtn.Size = new System.Drawing.Size(175, 71);
+            this.NewGameBtn.Size = new System.Drawing.Size(233, 87);
             this.NewGameBtn.TabIndex = 0;
             this.NewGameBtn.Text = "New Game";
             this.NewGameBtn.UseVisualStyleBackColor = true;
@@ -45,9 +46,10 @@
             // 
             // ContinueBtn
             // 
-            this.ContinueBtn.Location = new System.Drawing.Point(531, 326);
+            this.ContinueBtn.Location = new System.Drawing.Point(708, 401);
+            this.ContinueBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ContinueBtn.Name = "ContinueBtn";
-            this.ContinueBtn.Size = new System.Drawing.Size(175, 71);
+            this.ContinueBtn.Size = new System.Drawing.Size(233, 87);
             this.ContinueBtn.TabIndex = 1;
             this.ContinueBtn.Text = "Continue";
             this.ContinueBtn.UseVisualStyleBackColor = true;
@@ -56,20 +58,22 @@
             // TestLb
             // 
             this.TestLb.AutoSize = true;
-            this.TestLb.Location = new System.Drawing.Point(199, 138);
+            this.TestLb.Location = new System.Drawing.Point(265, 170);
+            this.TestLb.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TestLb.Name = "TestLb";
-            this.TestLb.Size = new System.Drawing.Size(59, 13);
+            this.TestLb.Size = new System.Drawing.Size(71, 16);
             this.TestLb.TabIndex = 2;
             this.TestLb.Text = "Name: ???";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.ClientSize = new System.Drawing.Size(1685, 838);
             this.Controls.Add(this.TestLb);
             this.Controls.Add(this.ContinueBtn);
             this.Controls.Add(this.NewGameBtn);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RPG Game";

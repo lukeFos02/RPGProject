@@ -26,7 +26,7 @@ namespace RPGProject.Classes
             if (!File.Exists(SaveFile))
             {
                 MessageBox.Show("No Save File Detected");
-                return null;
+                return DefaultPlayer;
             }
             else
             {
@@ -66,8 +66,8 @@ namespace RPGProject.Classes
             {
                 return new Player
                 {
-                    name = "",
-                    health = 0,
+                    name = "Default",
+                    health = 999,
                     currentWeapon = new Weapon(),
                     currentArmour = new Armour(),
                     weapons = new List<Weapon>(),

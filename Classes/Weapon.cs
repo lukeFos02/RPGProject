@@ -26,10 +26,15 @@ namespace RPGProject.Classes
         {
             return new List<Weapon>
             {
+                new Weapon("Developer's Sword", 999),
                 new Weapon("Wood Sword", 10),
             };
         }
 
+        public static Weapon LoadDeveloperSword()
+        {
+            return new Weapon("Developer's Sword", 10);
+        }
         public static Weapon LoadWoodSword()
         {
             return new Weapon("Wood Sword", 10);

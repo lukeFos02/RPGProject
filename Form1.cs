@@ -32,9 +32,13 @@ namespace RPGProject
         private void ContinueBtn_Click(object sender, EventArgs e)
         {
             player = SaveManagement.LoadPLayer();
-            if (player.name != null)
+            if (player.name != null && player.name != "Default")
             {
                 TestLb.Text = "Name: " + player.name;
+                NewGameBtn.Enabled = false;
+                NewGameBtn.Visible = false;
+                ContinueBtn.Enabled = false;
+                ContinueBtn.Visible = false;
             }
         }
     }

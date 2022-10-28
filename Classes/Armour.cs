@@ -25,10 +25,15 @@ namespace RPGProject.Classes
         {
             return new List<Armour>
             {
-                new Armour ("Wood Armour", 10),
+                new Armour("Developer's Armour", 999),
+                new Armour("Wood Armour", 10),
             };
         }
 
+        public static Armour LoadDeveloperArmour()
+        {
+            return new Armour("Developer's Armour", 999);
+        }
         public static Armour LoadWoodArmour()
         {
             return new Armour("Wood Armour", 10);
