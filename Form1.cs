@@ -23,10 +23,7 @@ namespace RPGProject
         {
             CreateChar createChar = new CreateChar();
             createChar.Show();
-            NewGameBtn.Enabled = false;
-            NewGameBtn.Visible = false;
-            ContinueBtn.Enabled = false;    
-            ContinueBtn.Visible = false;    
+            Close();
         }
 
         private void ContinueBtn_Click(object sender, EventArgs e)
@@ -34,11 +31,18 @@ namespace RPGProject
             player = SaveManagement.LoadPLayer();
             if (player.name != null && player.name != "Default")
             {
-                TestLb.Text = "Name: " + player.name;
+                TestLb.Text = player.name;
                 NewGameBtn.Enabled = false;
                 NewGameBtn.Visible = false;
                 ContinueBtn.Enabled = false;
                 ContinueBtn.Visible = false;
+                HUDPanel.Visible = true;
+                HUBTb.Visible = true;
+                HUDBtn1.Visible = true;
+                HUDBtn2.Visible = true;
+                HUDBtn3.Visible = true;
+                HUDBtn4.Visible = true;
+                HealthPb.Visible = true;
             }
         }
     }

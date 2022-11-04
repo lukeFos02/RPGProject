@@ -31,6 +31,8 @@ namespace RPGProject
             {
                 Player player = new Player(NameTB.Text, 50, StarterWeapon, StarterArmour, StarterWeapon, StarterArmour);
                 SaveManagement.SavePlayer(player);
+                Form1 form1 = new Form1();
+                form1.Show();
                 Close();
             }
             else

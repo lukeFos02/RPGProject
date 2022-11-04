@@ -32,13 +32,13 @@ namespace RPGProject
                         Armour DevAr = Armour.LoadDeveloperArmour();
                         player.currentWeapon = DevWep;
                         player.currentArmour = DevAr;
-                        player.weapons.Add(DevWep); 
+                        player.weapons.Add(DevWep);
                         player.armours.Add(DevAr);
                         SaveManagement.SavePlayer(player);
                         MessageBox.Show(player.name + " Now Has Cheats!");
                         break;
-                        default:
-                        MessageBox.Show("Wrong Command /n -v For Version /n dev For Developer Equipment");
+                    default:
+                        MessageBox.Show("Wrong Command \n -v For Version \n dev For Developer Equipment");
                         break;
                 }
             }
