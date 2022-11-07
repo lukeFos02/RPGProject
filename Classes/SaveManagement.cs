@@ -23,19 +23,6 @@ namespace RPGProject.Classes
 
         public static Player LoadPLayer()
         {
-            /*if (!File.Exists(SaveFile))
-            {
-                MessageBox.Show("No Save File Detected");
-                return DefaultPlayer;
-            }
-            else
-            {
-                using (Stream stream = File.OpenRead(SaveFile))
-                {
-                    XmlSerializer ser = new XmlSerializer(typeof(Player));
-                    return (Player)ser.Deserialize(stream);
-                }
-            }*/
             try
             {
                 using (Stream stream = File.OpenRead(SaveFile))

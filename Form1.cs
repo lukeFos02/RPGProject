@@ -23,7 +23,6 @@ namespace RPGProject
         {
             CreateChar createChar = new CreateChar();
             createChar.Show();
-            Close();
         }
 
         private void ContinueBtn_Click(object sender, EventArgs e)
@@ -37,12 +36,22 @@ namespace RPGProject
                 ContinueBtn.Enabled = false;
                 ContinueBtn.Visible = false;
                 HUDPanel.Visible = true;
-                HUBTb.Visible = true;
+                HUDTb.Visible = true;
                 HUDBtn1.Visible = true;
                 HUDBtn2.Visible = true;
                 HUDBtn3.Visible = true;
                 HUDBtn4.Visible = true;
                 HealthPb.Visible = true;
+                HealthPb.Maximum = player.health;
+                HealthPb.Value = player.health;
+                HUDTb.AppendText("Current Location: Town");
+                HUDTb.AppendText(Environment.NewLine);
+                HUDTb.AppendText("Remember You Can Only Save While In Town");
+                HUDTb.AppendText(Environment.NewLine);
+                HUDBtn1.Text = "Go Out Of Town";
+                HUDBtn2.Text = "Blacksmith";
+                HUDBtn3.Text = "Stats";
+                HUDBtn4.Text = "Save";
             }
         }
     }
