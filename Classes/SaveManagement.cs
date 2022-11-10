@@ -64,15 +64,7 @@ namespace RPGProject.Classes
         {
             get
             {
-                return new Player
-                {
-                    name = "Default",
-                    health = 999,
-                    currentWeapon = new Weapon(),
-                    currentArmour = new Armour(),
-                    weapons = new List<Weapon>(),
-                    armours = new List<Armour>(),
-                };
+                return new Player("Default", 999, new Weapon(), new Armour(), new Weapon(), new Armour());
             }   
         }
     }

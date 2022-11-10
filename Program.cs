@@ -30,12 +30,10 @@ namespace RPGProject
                         Player player = SaveManagement.LoadPLayer();
                         Weapon DevWep = Weapon.LoadDeveloperSword();
                         Armour DevAr = Armour.LoadDeveloperArmour();
-                        player.currentWeapon = DevWep;
-                        player.currentArmour = DevAr;
-                        player.weapons.Add(DevWep);
-                        player.armours.Add(DevAr);
+                        player.GiveWeapon(DevWep);
+                        player.GiveArmour(DevAr);
                         SaveManagement.SavePlayer(player);
-                        MessageBox.Show(player.name + " Now Has Cheats!");
+                        MessageBox.Show(player.GetName() + " Now Has Cheats!");
                         break;
                     default:
                         MessageBox.Show("Wrong Command \n -v For Version \n dev For Developer Equipment");
