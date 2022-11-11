@@ -64,7 +64,7 @@ namespace RPGProject.Classes
         {
             get
             {
-                return new Player("Default", 999, new Weapon(), new Armour(), new Weapon(), new Armour());
+                return new Player("Default");
             }   
         }
     }

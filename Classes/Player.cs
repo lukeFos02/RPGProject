@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,53 +10,28 @@ namespace RPGProject.Classes
     public class Player
     {
         //data
-        public string name;
-        public int health;
-        public Weapon currentWeapon;
-        public Armour currentArmour;
-        public List<Weapon> weapons;
-        public List<Armour> armours;
+        private string name;
+        private int health;
+        private Weapon currentWeapon;
+        private Armour currentArmour;
+        private List<Weapon> weapons;
+        private List<Armour> armours;
 
-        //getters
-        public string GetName()
-        {
-            return name;
-        }
-
-        public int GetHealth()
-        {
-            return health;
-        }
-
-        public Weapon GetWeapon()
-        {
-            return currentWeapon;
-        }
-
-        public Armour GetArmour()
-        {
-            return currentArmour;
-        }
-
-        public List<Weapon> GetAllWeapons()
-        {
-            return weapons;
-        }
-
-        public List<Armour> GetAllArmour()
-        {
-            return armours; 
-        }
-
-        //setters
-        public Player(string name, int health, Weapon currentWeapon, Armour currentArmour, Weapon firstWeapon, Armour firstArmour)
+        //getters/setters
+        public string Name { get { return name; } set { name = value; } }
+        public int Health { get { return health; } set { health = value; } } 
+        public Weapon CurrentWeapon { get { return currentWeapon; } set { currentWeapon = value; } } 
+        public Armour CurrentArmour { get { return currentArmour; } set { currentArmour = value; } }  
+        public List<Weapon> Weapons { get { return weapons; } set { weapons = value; } }
+        public List<Armour> Armours { get { return armours; } set { armours = value; } }  
+        public Player(string name)
         {
             this.name = name;
-            this.health = health;
-            this.currentWeapon = currentWeapon;
-            this.currentArmour = currentArmour;
-            this.weapons = new List<Weapon> { firstWeapon};
-            this.armours = new List<Armour> { firstArmour };
+            this.health = 50;
+            this.currentWeapon = Weapon.LoadWoodSword();
+            this.currentArmour = Armour.LoadWoodArmour();
+            this.weapons = new List<Weapon> { Weapon.LoadWoodSword() };
+            this.armours = new List<Armour> { Armour.LoadWoodArmour() };
         }
 
         public void GiveWeapon(Weapon weapon)
@@ -66,8 +42,8 @@ namespace RPGProject.Classes
 
         public void GiveArmour(Armour armour)
         {
-            currentArmour = armour; 
-            armours.Add(armour);    
+            currentArmour = armour;
+            armours.Add(armour);
         }
 
         public Player()

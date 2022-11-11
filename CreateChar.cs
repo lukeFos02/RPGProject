@@ -16,10 +16,6 @@ namespace RPGProject
 {
     public partial class CreateChar : Form
     {
-        List<Weapon> AllWeapons = Weapon.LoadWeapons();
-        List<Armour> AllArmours = Armour.LoadArmours();
-        Weapon StarterWeapon = Weapon.LoadWoodSword();
-        Armour StarterArmour = Armour.LoadWoodArmour();
         public CreateChar()
         {
             InitializeComponent();
@@ -29,7 +25,7 @@ namespace RPGProject
         {
             if (NameTB.Text.Length > 0)
             {
-                Player player = new Player(NameTB.Text, 50, StarterWeapon, StarterArmour, StarterWeapon, StarterArmour);
+                Player player = new Player(NameTB.Text);
                 SaveManagement.SavePlayer(player);
                 Close();
             }

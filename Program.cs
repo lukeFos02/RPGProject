@@ -33,7 +33,7 @@ namespace RPGProject
                         player.GiveWeapon(DevWep);
                         player.GiveArmour(DevAr);
                         SaveManagement.SavePlayer(player);
-                        MessageBox.Show(player.GetName() + " Now Has Cheats!");
+                        MessageBox.Show(player.Name + " Now Has Cheats!");
                         break;
                     default:
                         MessageBox.Show("Wrong Command \n -v For Version \n dev For Developer Equipment");

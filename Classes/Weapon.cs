@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace RPGProject.Classes
 {
-    public class Weapon
+    public class Weapon 
     {
-        public string name;
-        public int attack;
+        private string name;
+        private int attack;
+
+        public string Name { get { return name; } set { name = value; } }
+        public int Attack { get { return attack; } set { attack = value; } }  
 
         public Weapon(string name, int attack)
         {

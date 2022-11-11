@@ -28,9 +28,10 @@ namespace RPGProject
         private void ContinueBtn_Click(object sender, EventArgs e)
         {
             player = SaveManagement.LoadPLayer();
-            if (player.GetName() != null && player.GetName() != "Default")
+            if (player.Name != null && player.Name != "Default")
             {
-                TestLb.Text = player.GetName();
+                TestLb.Text = player.Name;
+                WeaponLbl.Text = player.CurrentWeapon.Name;
                 NewGameBtn.Enabled = false;
                 NewGameBtn.Visible = false;
                 ContinueBtn.Enabled = false;
@@ -42,9 +43,9 @@ namespace RPGProject
                 HUDBtn3.Visible = true;
                 HUDBtn4.Visible = true;
                 HealthPb.Visible = true;
-                HealthPb.Maximum = player.GetHealth();
-                HealthPb.Value = player.GetHealth();
-                HUDTb.AppendText("Current Location: Town");
+                HealthPb.Maximum = player.Health;
+                HealthPb.Value = player.Health;
+                HUDTb.AppendText("Current Location - Town");
                 HUDTb.AppendText(Environment.NewLine);
                 HUDTb.AppendText("Remember You Can Only Save While In Town");
                 HUDTb.AppendText(Environment.NewLine);
@@ -53,6 +54,26 @@ namespace RPGProject
                 HUDBtn3.Text = "Stats";
                 HUDBtn4.Text = "Save";
             }
+        }
+
+        private void HUDBtn1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void HUDBtn2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void HUDBtn3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void HUDBtn4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
