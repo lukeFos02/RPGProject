@@ -73,7 +73,12 @@ namespace RPGProject
 
         private void HUDBtn4_Click(object sender, EventArgs e)
         {
-
+            switch (HUDBtn4.Text)
+            {
+                case "Save":
+                    SaveManagement.SavePlayer(player);
+                    break;
+            }
         }
     }
 }
