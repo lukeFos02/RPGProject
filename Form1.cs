@@ -14,6 +14,8 @@ namespace RPGProject
     public partial class Form1 : Form
     {
         Player player = new Player();
+        List<Weapon> AllWeapons = Weapon.LoadWeapons();
+        List<Armour> AllArmour = Armour.LoadArmours();
         public Form1()
         {
             InitializeComponent();
@@ -63,7 +65,21 @@ namespace RPGProject
 
         private void HUDBtn2_Click(object sender, EventArgs e)
         {
-
+            switch (HUDBtn2.Text)
+            {
+                case "Blacksmith":
+                    foreach (Weapon w in AllWeapons)
+                    {
+                        BlacksmithLB.Items.Add(w.Name); 
+                    }
+                    foreach (Armour a in AllArmour)
+                    {
+                        BlacksmithLB.Items.Add(a.Name);
+                    }
+                    BlacksmithLB.DoubleClick += new EventHandler(BlacksmithLB_DoubleClick);
+                    BlacksmithLB.Visible = true;
+                    break;
+            }
         }
 
         private void HUDBtn3_Click(object sender, EventArgs e)
@@ -78,6 +94,13 @@ namespace RPGProject
                 case "Save":
                     SaveManagement.SavePlayer(player);
                     break;
+            }
+        }
+        private void BlacksmithLB_DoubleClick(object sender, EventArgs e)
+        {
+            if (BlacksmithLB.SelectedItem != null)
+            {
+                MessageBox.Show(BlacksmithLB.SelectedItem.ToString());
             }
         }
     }
