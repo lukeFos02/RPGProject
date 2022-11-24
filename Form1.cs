@@ -16,6 +16,7 @@ namespace RPGProject
         Player player = new Player();
         List<Weapon> AllWeapons = Weapon.LoadWeapons();
         List<Armour> AllArmour = Armour.LoadArmours();
+        string CurrentLocation = null;
         public Form1()
         {
             InitializeComponent();
@@ -60,6 +61,27 @@ namespace RPGProject
 
         private void HUDBtn1_Click(object sender, EventArgs e)
         {
+            switch (HUDBtn1.Text)
+            {
+                case "Go Out Of Town":
+                    HUDTb.AppendText("Current Location - Outside Town");
+                    HUDTb.AppendText(Environment.NewLine);
+                    HUDBtn1.Text = "Go To Forest";
+                    HUDBtn2.Text = "Go To Caves";
+                    HUDBtn3.Text = "Go Back To Town";
+                    HUDBtn4.Text = "";
+                    break;
+                case "Go To Forest":
+                    HUDBtn1.Text = "Fight";
+                    HUDBtn2.Text = "";
+                    HUDBtn3.Text = "";
+                    HUDBtn4.Text = "";
+                    CurrentLocation = "Forest";
+                    break;
+                case "Fight":
+
+                    break;
+            }
 
         }
 
@@ -84,6 +106,19 @@ namespace RPGProject
 
         private void HUDBtn3_Click(object sender, EventArgs e)
         {
+            switch (HUDBtn3.Text)
+            {
+                case "Go Back To Town":
+                    HUDTb.AppendText("Current Location - Town");
+                    HUDTb.AppendText(Environment.NewLine);
+                    HUDTb.AppendText("Remember You Can Only Save While In Town");
+                    HUDTb.AppendText(Environment.NewLine);
+                    HUDBtn1.Text = "Go Out Of Town";
+                    HUDBtn2.Text = "Blacksmith";
+                    HUDBtn3.Text = "Stats";
+                    HUDBtn4.Text = "Save";
+                    break;
+            }
 
         }
 
