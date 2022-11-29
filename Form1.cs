@@ -1,4 +1,5 @@
 ﻿using RPGProject.Classes;
+using RPGProject.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,7 @@ namespace RPGProject
         List<Weapon> AllWeapons = Weapon.LoadWeapons();
         List<Armour> AllArmour = Armour.LoadArmours();
         string CurrentLocation = null;
+        Enemy Opponent = null;  
         public Form1()
         {
             InitializeComponent();
@@ -77,9 +79,11 @@ namespace RPGProject
                     HUDBtn3.Text = "";
                     HUDBtn4.Text = "";
                     CurrentLocation = "Forest";
+                    HUDTb.AppendText("Current Location - Outside Town");
+                    HUDTb.AppendText(Environment.NewLine);
                     break;
                 case "Fight":
-
+                    Opponent = Opponent.GetNewEnemy("Forest");
                     break;
             }
 
