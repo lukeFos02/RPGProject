@@ -17,9 +17,10 @@ namespace RPGProject
         Player player = new Player();
         List<Weapon> AllWeapons = Weapon.LoadWeapons();
         List<Armour> AllArmour = Armour.LoadArmours();
-        string CurrentLocation = null;
-        Enemy Opponent = null;  
-        public Form1()
+        string CurrentLocation = "";
+        Enemy Opponent = new Enemy();
+		int OpponentFullHealth = 0;
+		public Form1()
         {
             InitializeComponent();
         }
@@ -37,6 +38,8 @@ namespace RPGProject
             {
                 TestLb.Text = player.Name;
                 WeaponLbl.Text = player.CurrentWeapon.Name;
+                player.Attack = 10 + player.CurrentWeapon.Attack;
+                player.Defence = 10 + player.CurrentArmour.Defence;
                 NewGameBtn.Enabled = false;
                 NewGameBtn.Visible = false;
                 ContinueBtn.Enabled = false;
@@ -75,18 +78,46 @@ namespace RPGProject
                     break;
                 case "Go To Forest":
                     HUDBtn1.Text = "Fight";
-                    HUDBtn2.Text = "";
+                    HUDBtn2.Text = "Go Back";
                     HUDBtn3.Text = "";
                     HUDBtn4.Text = "";
-                    CurrentLocation = "Forest";
-                    HUDTb.AppendText("Current Location - Outside Town");
+					CurrentLocation = "Forest";
+					HUDTb.AppendText("Current Location - Outside Town");
                     HUDTb.AppendText(Environment.NewLine);
                     break;
                 case "Fight":
-                    Opponent = Opponent.GetNewEnemy("Forest");
+					Opponent = Opponent.GetNewEnemy(CurrentLocation);
+                    OpponentPB.Visible= true;
+                    OpponentPB.Maximum = Opponent.Health;
+                    OpponentPB.Value = Opponent.Health;
+					OpponentFullHealth = Opponent.Health;
+					HUDTb.AppendText(Opponent.Name + " Approches!");
+					HUDTb.AppendText(Environment.NewLine);
+                    HUDBtn1.Text = "Attack";
+                    HUDBtn2.Text = "Defend";
+                    HUDBtn3.Text = "Run";
+					break;
+                case "Attack":
+					var rng = new Random();
+                    int random = rng.Next((OpponentFullHealth / 20) * -1, (OpponentFullHealth / 20));
+					int damage = player.Attack - (Opponent.Defence) + random;
+                    Opponent.Health = Opponent.Health - damage;
+                    if(Opponent.Health > 0)
+                    {
+						OpponentPB.Value = OpponentPB.Value - damage;
+					}
+                    else
+                    {
+						HUDTb.AppendText(Opponent.Name + " Is Defeated!");
+						HUDTb.AppendText(Environment.NewLine);
+                        OpponentPB.Visible = false;
+						HUDBtn1.Text = "Fight";
+						HUDBtn2.Text = "Go Back";
+						HUDBtn3.Text = "";
+						HUDBtn4.Text = "";
+					}
                     break;
             }
-
         }
 
         private void HUDBtn2_Click(object sender, EventArgs e)
@@ -104,7 +135,17 @@ namespace RPGProject
                     }
                     BlacksmithLB.DoubleClick += new EventHandler(BlacksmithLB_DoubleClick);
                     BlacksmithLB.Visible = true;
-                    break;
+					break;
+                case "Go Back":
+					HUDTb.AppendText("Current Location - Outside Town");
+					HUDTb.AppendText(Environment.NewLine);
+					HUDBtn1.Text = "Go To Forest";
+					HUDBtn2.Text = "Go To Caves";
+					HUDBtn3.Text = "Go Back To Town";
+					HUDBtn4.Text = "";
+					break;
+				case "Defend":
+                    break;                  
             }
         }
 
@@ -121,6 +162,8 @@ namespace RPGProject
                     HUDBtn2.Text = "Blacksmith";
                     HUDBtn3.Text = "Stats";
                     HUDBtn4.Text = "Save";
+                    break;
+                case "Run":
                     break;
             }
 
