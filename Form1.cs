@@ -14,7 +14,7 @@ namespace RPGProject
 {
     public partial class Form1 : Form
     {
-        Player player = new Player();
+        Player Player = new Player();
         List<Weapon> AllWeapons = Weapon.LoadWeapons();
         List<Armour> AllArmour = Armour.LoadArmours();
         string CurrentLocation = "";
@@ -33,13 +33,13 @@ namespace RPGProject
 
         private void ContinueBtn_Click(object sender, EventArgs e)
         {
-            player = SaveManagement.LoadPLayer();
-            if (player.Name != null && player.Name != "Default")
+            Player = SaveManagement.LoadPLayer();
+            if (Player.Name != null && Player.Name != "Default")
             {
-                TestLb.Text = player.Name;
-                WeaponLbl.Text = player.CurrentWeapon.Name;
-                player.Attack = 10 + player.CurrentWeapon.Attack;
-                player.Defence = 10 + player.CurrentArmour.Defence;
+                TestLb.Text = Player.Name;
+                WeaponLbl.Text = Player.CurrentWeapon.Name;
+                Player.Attack = 10 + Player.CurrentWeapon.Attack;
+                Player.Defence = 10 + Player.CurrentArmour.Defence;
                 NewGameBtn.Enabled = false;
                 NewGameBtn.Visible = false;
                 ContinueBtn.Enabled = false;
@@ -51,8 +51,8 @@ namespace RPGProject
                 HUDBtn3.Visible = true;
                 HUDBtn4.Visible = true;
                 HealthPb.Visible = true;
-                HealthPb.Maximum = player.Health;
-                HealthPb.Value = player.Health;
+                HealthPb.Maximum = Player.Health;
+                HealthPb.Value = Player.Health;
                 HUDTb.AppendText("Current Location - Town");
                 HUDTb.AppendText(Environment.NewLine);
                 HUDTb.AppendText("Remember You Can Only Save While In Town");
@@ -82,7 +82,7 @@ namespace RPGProject
                     HUDBtn3.Text = "";
                     HUDBtn4.Text = "";
 					CurrentLocation = "Forest";
-					HUDTb.AppendText("Current Location - Outside Town");
+					HUDTb.AppendText("Current Location - Forest");
                     HUDTb.AppendText(Environment.NewLine);
                     break;
                 case "Fight":
@@ -100,7 +100,7 @@ namespace RPGProject
                 case "Attack":
 					var rng = new Random();
                     int random = rng.Next((OpponentFullHealth / 20) * -1, (OpponentFullHealth / 20));
-					int damage = player.Attack - (Opponent.Defence) + random;
+					int damage = Player.Attack - (Opponent.Defence) + random;
                     Opponent.Health = Opponent.Health - damage;
                     if(Opponent.Health > 0)
                     {
@@ -115,6 +115,22 @@ namespace RPGProject
 						HUDBtn2.Text = "Go Back";
 						HUDBtn3.Text = "";
 						HUDBtn4.Text = "";
+					}
+                    int damageTaken = Opponent.EnemyAttack(Opponent, Player);
+                    Player.Health = Player.Health - damageTaken;
+                    if(Player.Health > 0)
+                    {
+                        HealthPb.Value = HealthPb.Value - damageTaken;
+                    }
+                    else
+                    {
+						HUDTb.AppendText("You Have Been Defeated");
+						HUDTb.AppendText(Environment.NewLine);
+						OpponentPB.Visible = false;
+						HUDBtn1.Text = "Go Out Of Town";
+						HUDBtn2.Text = "Blacksmith";
+						HUDBtn3.Text = "Stats";
+						HUDBtn4.Text = "Save";
 					}
                     break;
             }
@@ -145,7 +161,25 @@ namespace RPGProject
 					HUDBtn4.Text = "";
 					break;
 				case "Defend":
-                    break;                  
+                    Player.Defence = Player.Defence + 5;
+					int damageTaken = Opponent.EnemyAttack(Opponent, Player);
+					Player.Health = Player.Health - damageTaken;
+					if (Player.Health > 0)
+					{
+						HealthPb.Value = HealthPb.Value - damageTaken;
+					}
+					else
+					{
+						HUDTb.AppendText("You Have Been Defeated");
+						HUDTb.AppendText(Environment.NewLine);
+						OpponentPB.Visible = false;
+						HUDBtn1.Text = "Go Out Of Town";
+						HUDBtn2.Text = "Blacksmith";
+						HUDBtn3.Text = "Stats";
+						HUDBtn4.Text = "Save";
+					}
+                    Player.Defence = Player.Defence - 5;
+					break;                  
             }
         }
 
@@ -164,9 +198,41 @@ namespace RPGProject
                     HUDBtn4.Text = "Save";
                     break;
                 case "Run":
-                    break;
+					var rng = new Random();
+                    int runChance = rng.Next(1, 100);
+                    if(runChance > 25)
+                    {
+						HUDTb.AppendText("Got Away From " + Opponent.Name);
+						HUDTb.AppendText(Environment.NewLine);
+                        OpponentPB.Visible = false;
+						HUDBtn1.Text = "Fight";
+						HUDBtn2.Text = "Go Back";
+						HUDBtn3.Text = "";
+						HUDBtn4.Text = "";
+					}
+                    else
+                    {
+						HUDTb.AppendText("Could Not Escape " + Opponent.Name);
+						HUDTb.AppendText(Environment.NewLine);
+					}
+					int damageTaken = Opponent.EnemyAttack(Opponent, Player);
+					Player.Health = Player.Health - damageTaken;
+					if (Player.Health > 0)
+					{
+						HealthPb.Value = HealthPb.Value - damageTaken;
+					}
+					else
+					{
+						HUDTb.AppendText("You Have Been Defeated");
+						HUDTb.AppendText(Environment.NewLine);
+						OpponentPB.Visible = false;
+						HUDBtn1.Text = "Go Out Of Town";
+						HUDBtn2.Text = "Blacksmith";
+						HUDBtn3.Text = "Stats";
+						HUDBtn4.Text = "Save";
+					}
+					break;
             }
-
         }
 
         private void HUDBtn4_Click(object sender, EventArgs e)
@@ -174,7 +240,7 @@ namespace RPGProject
             switch (HUDBtn4.Text)
             {
                 case "Save":
-                    SaveManagement.SavePlayer(player);
+                    SaveManagement.SavePlayer(Player);
                     break;
             }
         }

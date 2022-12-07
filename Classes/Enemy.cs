@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,6 +53,13 @@ namespace RPGProject.Classes
                 return null;
             }
         }
+        public int EnemyAttack(Enemy currentEnemy, Player player)
+        {
+			var rng = new Random();
+			int random = rng.Next((player.Health / 20) * -1, (player.Health / 20));
+			int damage = currentEnemy.Attack - (player.Defence) + random;
+            return damage;
+		}
     }
 }
 
