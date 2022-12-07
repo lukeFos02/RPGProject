@@ -41,7 +41,7 @@ namespace RPGProject.Classes
         {
             get
             {
-                //so we can save data for the current user of the pc
+                //get save data for the current user of the pc
                 string folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 folder = Path.Combine(folder, "RPG Project");
                 folder = Path.Combine(folder, "Player Setting");
@@ -64,7 +64,7 @@ namespace RPGProject.Classes
         {
             get
             {
-                return new Player("Default");
+                return new Player("Default", 0, 0, 0);
             }   
         }
     }

@@ -25,7 +25,7 @@ namespace RPGProject
         {
             if (NameTB.Text.Length > 0)
             {
-                Player player = new Player(NameTB.Text);
+                Player player = new Player(NameTB.Text, 1, 1, 1);
                 SaveManagement.SavePlayer(player);
                 Close();
             }

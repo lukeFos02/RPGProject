@@ -7,28 +7,20 @@ using System.Threading.Tasks;
 
 namespace RPGProject.Classes
 {
-    public class Player
+    public class Player : Entity
     {
         //data
-        private string name;
-        private int health;
-        private int attack;
-        private int defence;
         private Weapon currentWeapon;
         private Armour currentArmour;
         private List<Weapon> weapons;
         private List<Armour> armours;
 
         //getters/setters
-        public string Name { get { return name; } set { name = value; } }
-        public int Health { get { return health; } set { health = value; } }
-		public int Attack { get { return attack; } set { attack = value; } }
-		public int Defence { get { return defence; } set { defence = value; } }
 		public Weapon CurrentWeapon { get { return currentWeapon; } set { currentWeapon = value; } } 
         public Armour CurrentArmour { get { return currentArmour; } set { currentArmour = value; } }  
         public List<Weapon> Weapons { get { return weapons; } set { weapons = value; } }
         public List<Armour> Armours { get { return armours; } set { armours = value; } }  
-        public Player(string name)
+        public Player(string name, int health, int attack, int defence) : base(name, health, attack, defence)
         {
             this.name = name;
             this.health = 50;
@@ -39,8 +31,12 @@ namespace RPGProject.Classes
             this.weapons = new List<Weapon> { Weapon.LoadWoodSword() };
             this.armours = new List<Armour> { Armour.LoadWoodArmour() };
         }
+		public Player()
+        {
 
-        public void GiveWeapon(Weapon weapon)
+        }
+
+		public void GiveWeapon(Weapon weapon)
         {
             currentWeapon = weapon;
             weapons.Add(weapon);
@@ -50,11 +46,6 @@ namespace RPGProject.Classes
         {
             currentArmour = armour;
             armours.Add(armour);
-        }
-
-        public Player()
-        {
-
         }
     }
 }

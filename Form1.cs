@@ -14,11 +14,11 @@ namespace RPGProject
 {
     public partial class Form1 : Form
     {
-        Player Player = new Player();
+        Player Player = new Player("", 1, 1, 1);
         List<Weapon> AllWeapons = Weapon.LoadWeapons();
         List<Armour> AllArmour = Armour.LoadArmours();
         string CurrentLocation = "";
-        Enemy Opponent = new Enemy();
+        Enemy Opponent = new Enemy("PlaceHolder", 0, 0, 0);
 		int OpponentFullHealth = 0;
 		public Form1()
         {

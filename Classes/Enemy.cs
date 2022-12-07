@@ -8,25 +8,12 @@ using System.Windows.Forms;
 
 namespace RPGProject.Classes
 {
-    public class Enemy
+    public class Enemy : Entity
     {
-        //data
-        private string name;
-        private int health;
-        private int attack;
-        private int defence;
-
-        public string Name { get { return name; } set { name = value; } }
-        public int Health { get { return health; } set { health = value; } }
-        public int Attack { get { return attack; } set { attack = value; } }
-        public int Defence { get { return defence; } set { defence = value; } }
+        //data (all based of enitiy atm)
 
         //setters
-        public Enemy()
-        {
-
-        }
-        private Enemy(string name, int health, int attack, int defence)
+        public Enemy(string name, int health, int attack, int defence) : base(name, health, attack, defence)
         {
             this.name = name;   
             this.health = health;
@@ -37,13 +24,13 @@ namespace RPGProject.Classes
         //functions
         public Enemy LoadSlime()
         {
-            return new Enemy("Slime", 30, 10, 10);
+            return new Enemy("Slime", 30, 25, 10);
         }
         public Enemy GetNewEnemy(string loction)
         {
             if (loction == "Forest")
             {
-                Enemy CurrentEnemy = new Enemy();
+                Enemy CurrentEnemy = new Enemy("PlaceHolder", 1, 1, 1);
                 CurrentEnemy = CurrentEnemy.LoadSlime();
                 return CurrentEnemy;
             }
@@ -56,8 +43,9 @@ namespace RPGProject.Classes
         public int EnemyAttack(Enemy currentEnemy, Player player)
         {
 			var rng = new Random();
-			int random = rng.Next((player.Health / 20) * -1, (player.Health / 20));
+			int random = rng.Next(((player.Health / 20) * -1), (player.Health / 20));
 			int damage = currentEnemy.Attack - (player.Defence) + random;
+            if (damage < 0) { return 0; }
             return damage;
 		}
     }

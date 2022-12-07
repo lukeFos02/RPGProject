@@ -7,20 +7,15 @@ using System.Threading.Tasks;
 
 namespace RPGProject.Classes
 {
-    public class Armour
+    public class Armour : Entity
     {
-        private string name;
-        private int defence;
-
-        public string Name { get { return name; } set { name = value; } } 
-        public int Defence { get { return defence; } set { defence = value; } }   
-
-        public Armour(string name, int defence)
+        public Armour(string name, int health, int attack, int defence) : base(name, health, attack, defence)
         {
             this.name = name;
+            this.health = health;
+            this.attack = attack;   
             this.defence = defence;
         }
-
         public Armour()
         {
 
@@ -29,18 +24,18 @@ namespace RPGProject.Classes
         {
             return new List<Armour>
             {
-                new Armour("Developer's Armour", 999),
-                new Armour("Wood Armour", 10),
+                new Armour("Developer's Armour", 999, 999, 999),
+                new Armour("Wood Armour", 0, 0, 10),
             };
         }
 
         public static Armour LoadDeveloperArmour()
         {
-            return new Armour("Developer's Armour", 999);
+            return new Armour("Developer's Armour", 999, 999, 999);
         }
         public static Armour LoadWoodArmour()
         {
-            return new Armour("Wood Armour", 10);
+            return new Armour("Wood Armour", 0, 0, 10);
         }
     }
 }

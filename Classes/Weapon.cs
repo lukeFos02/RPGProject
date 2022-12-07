@@ -7,20 +7,15 @@ using System.Threading.Tasks;
 
 namespace RPGProject.Classes
 {
-    public class Weapon 
+    public class Weapon : Entity
     {
-        private string name;
-        private int attack;
-
-        public string Name { get { return name; } set { name = value; } }
-        public int Attack { get { return attack; } set { attack = value; } }  
-
-        public Weapon(string name, int attack)
+        public Weapon(string name, int health, int attack, int defence) : base(name, health, attack, defence)
         {
             this.name = name;
+            this.health = health;
             this.attack = attack;
+            this.defence = defence;
         }
-
         public Weapon()
         {
 
@@ -30,18 +25,18 @@ namespace RPGProject.Classes
         {
             return new List<Weapon>
             {
-                new Weapon("Developer's Sword", 999),
-                new Weapon("Wood Sword", 10),
+                new Weapon("Developer's Sword", 999, 999, 999),
+                new Weapon("Wood Sword", 0, 10, 0),
             };
         }
 
         public static Weapon LoadDeveloperSword()
         {
-            return new Weapon("Developer's Sword", 10);
+            return new Weapon("Developer's Sword", 999, 999, 999);
         }
         public static Weapon LoadWoodSword()
         {
-            return new Weapon("Wood Sword", 10);
+            return new Weapon("Wood Sword", 0, 10, 0);
         }
     }
 }
